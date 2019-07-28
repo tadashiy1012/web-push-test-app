@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>push web</title>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAyhy5cF2RgiYazjBgPmca7jDGCdi1LPBc",
+            authDomain: "pushtestapp-51f6f.firebaseapp.com",
+            databaseURL: "https://pushtestapp-51f6f.firebaseio.com",
+            projectId: "pushtestapp-51f6f",
+            storageBucket: "pushtestapp-51f6f.appspot.com",
+            messagingSenderId: "857858385928",
+            appId: "1:857858385928:web:c74d3fdad5568d01"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</head>
+<body>
+    <input type="text" id="out">
+    <script>
+        const out = document.getElementById('out');
+        const messaging = firebase.messaging();
+        messaging.usePublicVapidKey('BJBJukFdI-6Njncu5s4p8A-7TGnzkpnsJ0MBhYl7CFdsmw-ZEd5Or6RsfwzDrTzBDsHhfXlnJvYPiC76VGYKfpw');
+        document.addEventListener('load', () => {
+            messaging.onMessage((payload) => {
+                console.log('msg received:', payload);
+            });
+            messaging.requestPermission().then(() => {
+                return messaging.getToken();
+            }).then((token) => {
+                console.log(token);
+                out.value = token;
+            }).catch((err) => {
+                console.error(err);
+            });
+        });
+    </script>
+</body>
+</html>
