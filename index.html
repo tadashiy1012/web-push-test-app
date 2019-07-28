@@ -39,6 +39,12 @@
             }).then((token) => {
                 console.log(token);
                 out.value = token;
+                const url = 'https://us-central1-pushtestapp-51f6f.cloudfunctions.net/putToken?token=' + token;
+                return fetch(url, {mode: 'cors'});
+            }).then((resp) => {
+                return resp.text();
+            }).then((text) => {
+                console.log(text);
             }).catch((err) => {
                 console.error(err);
             });
