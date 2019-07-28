@@ -43,6 +43,10 @@
                 console.error(err);
             });
         });
+        navigator.serviceWorker.register('./firebase-messaging-sw.js').then((resp) => {
+            console.log(resp);
+            messaging.useServiceWorker(resp);
+        });
     </script>
 </body>
 </html>
