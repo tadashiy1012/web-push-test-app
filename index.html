@@ -28,7 +28,7 @@
         const out = document.getElementById('out');
         const messaging = firebase.messaging();
         messaging.usePublicVapidKey('BJBJukFdI-6Njncu5s4p8A-7TGnzkpnsJ0MBhYl7CFdsmw-ZEd5Or6RsfwzDrTzBDsHhfXlnJvYPiC76VGYKfpw');
-        document.addEventListener('load', () => {
+        document.addEventListener('DOMContentLoaded', () => {
             console.log('ready');
             messaging.onMessage((payload) => {
                 console.log('msg received:', payload);
